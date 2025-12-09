@@ -1,0 +1,9 @@
+@import "tailwindcss";
+@plugin "daisyui";
+body {
+  /* Change the background color to white */
+  background-color: white; /* or #FFFFFF */
+
+  /* You might also need to change the text color for readability */
+  color: black; /* or #000000 */
+}
