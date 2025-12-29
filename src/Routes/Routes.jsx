@@ -1,13 +1,14 @@
-import {
-  createBrowserRouter,
-} from "react-router-dom";
+import { createBrowserRouter } from "react-router-dom";
 import Main from "../Layout/Main";
 import Home from "../pages/Home/Home/Home";
 import Menu from "../pages/Menu/Menu/Menu";
 import Order from "../pages/Order/Order/Order";
 import Login from "../pages/Login/Login";
 import SignUp from '../pages/SignUp/SignUp';
+import PrivateRoute from "./PrivateRoute";
 
+// FIX 1: Added the extra /Home/ in the path
+import Secret from "../pages/Home/Home/Shared/Secret/Secret";
 
 export const router = createBrowserRouter([
   {
@@ -16,24 +17,28 @@ export const router = createBrowserRouter([
     children: [
       {
         path: '/',
-        element: <Home />,
+        element: <Home />
       },
       {
         path: 'menu',
-        element: <Menu></Menu>
+        element: <Menu />
       },
       {
-        // THIS IS THE CORRECTED LINE: 'order/:category'
+
         path: 'order/:category',
-        element: <Order></Order>
+        element: <Order />
       },
       {
-        path: 'Login',
-        element: <Login></Login>
+        path: 'login',
+        element: <Login />
       },
       {
         path: 'signUp',
-        element: <SignUp></SignUp>
+        element: <SignUp />
+      },
+      {
+        path: 'secret',
+        element: <PrivateRoute><Secret /></PrivateRoute>
       }
     ]
   },
