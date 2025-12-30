@@ -1,21 +1,15 @@
-import { useContext } from "react";
-import { AuthContext } from "../provider/AuthProvider";
-import { Navigate, useLocation } from "react-router-dom"; // Added useLocation
-
 const PrivateRoute = ({ children }) => {
     const { user, loading } = useContext(AuthContext);
-    const location = useLocation(); // Capture the current location
+    const location = useLocation();
 
     if (loading) {
-        return <progress className="progress w-56"></progress>;
+        return <span className="loading loading-spinner loading-lg"></span>;
     }
 
     if (user) {
         return children;
     }
 
-    // Pass the current location to the login page using 'state'
-    return <Navigate to="/login" state={{ from: location }} replace></Navigate>;
+    // This sends the user to login but "remembers" they wanted to go to 'secret'
+    return <Navigate to="/login" state={{ from: location }} replace />;
 };
-
-export default PrivateRoute;

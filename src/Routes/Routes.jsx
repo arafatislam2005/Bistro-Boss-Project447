@@ -5,7 +5,7 @@ import Menu from "../pages/Menu/Menu/Menu";
 import Order from "../pages/Order/Order/Order";
 import Login from "../pages/Login/Login";
 import SignUp from '../pages/SignUp/SignUp';
-import PrivateRoute from "./PrivateRoute";
+// import PrivateRoute from "./PrivateRoute";
 
 // FIX 1: Added the extra /Home/ in the path
 import Secret from "../pages/Home/Home/Shared/Secret/Secret";
@@ -36,9 +36,10 @@ export const router = createBrowserRouter([
         path: 'signUp',
         element: <SignUp />
       },
+      // Remove the <PrivateRoute> wrapper
       {
         path: 'secret',
-        element: <PrivateRoute><Secret /></PrivateRoute>
+        element: <Secret></Secret>
       }
     ]
   },
