@@ -1,9 +1,12 @@
 // import React from 'react';
 
-const FoodCard = ({item}) => {
-    
-    const {name, image, price, recipe} = item
-    
+const FoodCard = ({ item }) => {
+
+    const { name, image, price, recipe } = item
+    const handelAddToCart = food => {
+        console.log(food)
+    }
+
     return (
 
         <div className="card w-full max-w-sm bg-[#1F2937] text-white shadow-xl hover:shadow-2xl transition-shadow duration-300">
@@ -11,7 +14,7 @@ const FoodCard = ({item}) => {
             <figure className="relative">
                 <img
                     src={image}
-                    alt={name} 
+                    alt={name}
                     className="w-full h-48 object-cover"
                 />
                 <p className="absolute top-0 right-0 mr-4 mt-4 px-4 py-1 bg-black text-white font-semibold rounded-lg text-lg">
@@ -28,11 +31,11 @@ const FoodCard = ({item}) => {
                     {recipe}
                 </p>
                 <div className="card-actions justify-center mt-4">
-                    <button className="btn btn-outline border-0 border-b-4 border-amber-600 text-amber-600 hover:bg-amber-600 hover:text-black hover:border-amber-600 font-semibold uppercase">
+                    <button onClick={() => handelAddToCart(item)} className="btn btn-outline border-0 border-b-4 border-amber-600 text-amber-600 hover:bg-amber-600 hover:text-black hover:border-amber-600 font-semibold uppercase">
                         Add To Cart
                     </button>
                 </div>
-                
+
             </div>
         </div>
     );
