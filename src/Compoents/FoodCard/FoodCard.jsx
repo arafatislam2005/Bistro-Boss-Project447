@@ -1,8 +1,13 @@
 // import React from 'react';
 
+import { useContext } from "react";
+import { AuthContext } from "../../provider/AuthProvider";
+import useAuth from "../../Hooks/useAuth";
+
 const FoodCard = ({ item }) => {
 
     const { name, image, price, recipe } = item
+    const { user } = useAuth()
     const handelAddToCart = food => {
         console.log(food)
     }
