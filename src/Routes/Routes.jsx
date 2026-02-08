@@ -9,6 +9,8 @@ import SignUp from '../pages/SignUp/SignUp';
 
 // FIX 1: Added the extra /Home/ in the path
 import Secret from "../pages/Home/Home/Shared/Secret/Secret";
+import DashBoard from "../Layout/DashBoard";
+import Cart from "../pages/DashBoard/Cart/Cart";
 
 export const router = createBrowserRouter([
   {
@@ -43,4 +45,14 @@ export const router = createBrowserRouter([
       }
     ]
   },
+  {
+    path: 'dashboard',
+    element: <DashBoard></DashBoard>,
+    children: [
+      {
+        path: 'cart',
+        element: <Cart></Cart>
+      }
+    ]
+  }
 ]);
