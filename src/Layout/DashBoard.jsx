@@ -1,8 +1,10 @@
 import { NavLink, Outlet } from "react-router-dom";
-import { FaAd, FaHome, FaList, FaListAlt, FaShoppingCart } from "react-icons/fa";
+import { FaAd, FaHome, FaList, FaListAlt, FaSearch, FaShoppingCart } from "react-icons/fa";
 import { FaCalendar } from "react-icons/fa6";
+import useCart from "../Hooks/useCart";
 
 const DashBoard = () => {
+    const [cart] = useCart()
     return (
         <div className="flex">
             {/* Sidebar with orange background */}
@@ -45,7 +47,7 @@ const DashBoard = () => {
                             }
                         >
                             <FaShoppingCart />
-                            My Cart
+                            My Cart ({cart.length})
                         </NavLink>
                     </li>
                     <li>
@@ -72,6 +74,33 @@ const DashBoard = () => {
                         >
                             <FaList />
                             My Bookings
+                        </NavLink>
+                    </li>
+                    <div className="divider"></div>
+                    <li>
+                        <NavLink
+                            to="/"
+                            className={({ isActive }) =>
+                                isActive
+                                    ? "flex items-center gap-2 bg-blue-700 text-white px-4 py-2 rounded-lg !important"
+                                    : "flex items-center gap-2 px-4 py-2"
+                            }
+                        >
+                            <FaHome />
+                            Home
+                        </NavLink>
+                    </li>
+                    <li>
+                        <NavLink
+                            to="/order/salad"
+                            className={({ isActive }) =>
+                                isActive
+                                    ? "flex items-center gap-2 bg-blue-700 text-white px-4 py-2 rounded-lg !important"
+                                    : "flex items-center gap-2 px-4 py-2"
+                            }
+                        >
+                            <FaSearch />
+                            Menu
                         </NavLink>
                     </li>
                 </ul>

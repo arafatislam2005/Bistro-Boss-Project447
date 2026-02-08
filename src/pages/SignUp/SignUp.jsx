@@ -4,8 +4,11 @@ import { useForm } from "react-hook-form";
 import { AuthContext } from "../../provider/AuthProvider";
 import { Link, useNavigate } from "react-router-dom";
 import Swal from 'sweetalert2';
+import useAxiosPublic from "../../Hooks/useAxiosPublic";
 
 const SignUp = () => {
+    const axiosSecore = useAxiosPublic()
+
     const [firebaseError, setFirebaseError] = useState("");
 
     const {
@@ -31,16 +34,28 @@ const SignUp = () => {
             // Using await here for cleaner async flow
             await updateUserProfile(data.name, data.PhotoURL);
 
-            console.log('User profile info updated');
-            reset();
-            Swal.fire({
-                position: "top-end",
-                icon: "success",
-                title: "User Created Successfully",
-                showConfirmButton: false,
-                timer: 1500
-            });
-            navigate('/');
+            // console.log('User profile info updated');
+            const userInfo = {
+                name: data.name,
+                email: data.email,
+
+            }
+            axiosSecore.post('/users', userInfo)
+                .then(res => {
+                    if (res.data.insertedId) {
+                        console.log('User info saved to database');
+                        reset();
+                        Swal.fire({
+                            position: "top-end",
+                            icon: "success",
+                            title: "User Created Successfully",
+                            showConfirmButton: false,
+                            timer: 1500
+                        });
+                        navigate('/');
+                    }
+                })
+
 
 
         } catch (error) {
