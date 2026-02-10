@@ -49,6 +49,12 @@ const AuthProvider = ({ children }) => {
     useEffect(() => {
         const unSubscribe = onAuthStateChanged(auth, (currentUser) => {
             setUser(currentUser);
+            if (currentUser) {
+                // get token and store clint
+            }
+            else {
+                // Do Something
+            }
             setLoading(false);
         });
         return () => unSubscribe();

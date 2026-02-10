@@ -11,29 +11,28 @@ const SocialLogin = () => {
     const handleGoogleSignIn = () => {
         googleSignIn()
             .then(result => {
-                const userInfo = {
+                console.log("Step 1: Firebase Login Success", result.user.email);
 
-                    email: result.user?.email,
+                const userInfo = {
                     name: result.user?.displayName,
+                    email: result.user?.email,
                 };
 
-                // POST to backend to create user in MongoDB
+                // This sends the data to your Express server
                 axiosPublic.post('/users', userInfo)
                     .then(res => {
-                        console.log("Database updated:", res.data);
+                        console.log("Step 2: MongoDB Response", res.data);
+                        // If res.data.insertedId exists, a new user was created
                         navigate('/');
                     })
-                    .catch(err => {
-                        console.error("MongoDB Post Error:", err.message);
-                        // Still navigate so user isn't stuck
+                    .catch(error => {
+                        console.error("Step 2 Error (Axios/MongoDB):", error.message);
                         navigate('/');
                     });
             })
             .catch(error => {
-                // This handles the "auth/cancelled-popup-request" seen in your screenshot
-                if (error.code !== 'auth/popup-closed-by-user') {
-                    console.error("Firebase Login Error:", error.code);
-                }
+                // This handles the 'cancelled-popup' error in your screenshot
+                console.error("Step 1 Error (Firebase):", error.code);
             });
     };
 
