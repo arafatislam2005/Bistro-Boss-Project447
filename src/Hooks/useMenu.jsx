@@ -1,24 +1,3 @@
-// import { useEffect, useState } from "react";
-
-// const useMenu = () => {
-
-//  const [menu, setMenu] = useState([]);
-//  const [loading, setLoading] = useState(true)
-//     useEffect( () =>{
-//         fetch('http://localhost:5000/menu')
-//         .then(res => res.json())
-//         .then(data => {
-
-//             setMenu(data)
-//             setLoading(false)
-//         } )
-//     }, [])
-//    return [menu, loading];
-// }
-
-
-// export default useMenu
-
 import { useEffect, useState } from "react";
 
 const useMenu = () => {
@@ -26,9 +5,17 @@ const useMenu = () => {
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
-        // Replaced localhost with your specific Render URL
-        fetch('https://bistro-boss-backend-fc49.onrender.com/menu')
-            .then(res => res.json())
+        // We define the base URL here to make it easy to update later
+        const baseUrl = 'https://bistro-boss-backend-fc49.onrender.com';
+
+        setLoading(true);
+        fetch(`${baseUrl}/menu`)
+            .then(res => {
+                if (!res.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                return res.json();
+            })
             .then(data => {
                 setMenu(data);
                 setLoading(false);
