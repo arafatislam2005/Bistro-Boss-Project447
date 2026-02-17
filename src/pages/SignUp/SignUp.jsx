@@ -6,12 +6,12 @@ import { Link, useNavigate } from "react-router-dom";
 import Swal from 'sweetalert2';
 import useAxiosPublic from "../../Hooks/useAxiosPublic";
 import SocialLogin from "../../Compoents/SocialLogin/SocialLogin";
-import { FaEye, FaEyeSlash } from 'react-icons/fa'; // Import Eye icons
+import { FaEye, FaEyeSlash } from 'react-icons/fa';
 
 const SignUp = () => {
     const axiosPublic = useAxiosPublic();
     const [firebaseError, setFirebaseError] = useState("");
-    const [showPassword, setShowPassword] = useState(false); // State for toggle
+    const [showPassword, setShowPassword] = useState(false);
     const { createUser, updateUserProfile } = useContext(AuthContext);
     const navigate = useNavigate();
 
@@ -64,7 +64,7 @@ const SignUp = () => {
             <div className="min-h-screen bg-gradient-to-br from-gray-900 via-slate-900 to-black flex items-center justify-center p-4 font-sans">
                 <div className="container mx-auto max-w-6xl flex flex-col lg:flex-row items-center justify-between gap-12">
 
-                    {/* Left Side: Text */}
+
                     <div className="text-center lg:text-left text-white lg:w-1/2 space-y-6">
                         <h1 className="text-5xl md:text-7xl font-extrabold tracking-tight">
                             Join <span className="text-orange-500">Us!</span>
@@ -75,7 +75,7 @@ const SignUp = () => {
                         <div className="hidden lg:block w-24 h-1 bg-orange-500 rounded-full"></div>
                     </div>
 
-                    {/* Right Side: Card */}
+
                     <div className="w-full max-w-lg">
                         <div className="bg-white/10 backdrop-blur-md border border-white/20 rounded-3xl shadow-2xl overflow-hidden">
                             <form onSubmit={handleSubmit(onSubmit)} className="p-8 grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -99,7 +99,7 @@ const SignUp = () => {
                                     {errors.email && <span className="text-xs text-red-400">Valid email is required</span>}
                                 </div>
 
-                                {/* Password with Toggle */}
+
                                 <div className="space-y-1 col-span-full">
                                     <label className="text-xs font-medium text-gray-300 ml-1">Password</label>
                                     <div className="relative">
